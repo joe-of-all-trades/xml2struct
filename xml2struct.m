@@ -1,5 +1,5 @@
 function  outStruct  = xml2struct(input)
-%Convert xml file into a MATLAB structure
+%XML2STRUCT converts xml file into a MATLAB structure
 %
 % outStruct = xml2struct2(input)
 % 
@@ -35,13 +35,9 @@ else
         end
     catch ME
         if strcmp(ME.identifier, 'MATLAB:UndefinedFunction')
-            try
-                xDoc = xmlFromString(input);
-            catch
-                error(errorMsg, 'Input');
-            end
-        else
             error(errorMsg, 'Input');
+        else
+            rethrow(ME)
         end
     end
 end
