@@ -30,12 +30,12 @@ else
             try
                 xDoc = xmlFromString(input);
             catch
-                error(errorMsg, 'Input');
+                error(errorMsg, inputname(1));
             end
         end
     catch ME
         if strcmp(ME.identifier, 'MATLAB:UndefinedFunction')
-            error(errorMsg, 'Input');
+            error(errorMsg, inputname(1));
         else
             rethrow(ME)
         end
@@ -77,7 +77,7 @@ if hasChildNodes(theNode)
                 children.(name){index} = childs;
                 
                 textfields = fieldnames(text);
-                if(~isempty(fieldnames(textfields)))
+                if ~isempty(textfields)
                     for ii = 1:length(textfields)
                         children.(name){index}.(textfields{ii}) = ...
                             text.(textfields{ii});
