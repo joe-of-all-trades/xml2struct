@@ -62,7 +62,7 @@ if hasChildNodes(theNode)
 
         theChild = item(childNodes,count-1);
         [text, name, attr, childs, textflag] = getNodeData(theChild);
-
+        
         if ~strcmp(name,'#text') && ~strcmp(name,'#comment') && ...
                 ~strcmp(name,'#cdata_dash_section')
             % XML allows the same elements to be defined multiple times,
@@ -88,6 +88,7 @@ if hasChildNodes(theNode)
                 end
             else
                 % add previously unknown (new) element to the structure
+                
                 children.(name) = childs;
                 
                 % add text data ( ptext returned by child node )
@@ -137,6 +138,7 @@ name = toCharArray(getNodeName(theNode))';
 name = strrep(name, '-', '_dash_');
 name = strrep(name, ':', '_colon_');
 name = strrep(name, '.', '_dot_');
+name = strrep(name, '_', 'u_');
 
 attr = parseAttributes(theNode);
 if (isempty(fieldnames(attr))) 
