@@ -150,7 +150,7 @@ end
 
 % Get data from any childless nodes. This version is faster than below.
 if isempty(fieldnames(childs)) && isempty(fieldnames(text))
-    text.(textflag) = toCharArray(getTextContent(theNode))';
+    text.(textflag) = char(getTextContent(theNode))';
 end
 
 % This alterative to the above 'if' block will also work but very slowly.
