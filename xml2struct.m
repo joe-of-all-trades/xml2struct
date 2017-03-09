@@ -134,7 +134,7 @@ function [text,name,attr,childs,textflag] = getNodeData(theNode)
 % Create structure of node info.
 
 %make sure name is allowed as structure name
-name = toCharArray(getNodeName(theNode))';
+name = char(getNodeName(theNode));
 name = strrep(name, '-', '_dash_');
 name = strrep(name, ':', '_colon_');
 name = strrep(name, '.', '_dot_');
@@ -150,7 +150,7 @@ end
 
 % Get data from any childless nodes. This version is faster than below.
 if isempty(fieldnames(childs)) && isempty(fieldnames(text))
-    text.(textflag) = char(getTextContent(theNode))';
+    text.(textflag) = char(getTextContent(theNode));
 end
 
 % This alterative to the above 'if' block will also work but very slowly.
@@ -170,7 +170,7 @@ if hasAttributes(theNode)
 
    for count = 1:numAttributes
         % Suggestion of Adrian Wanner
-        str = toCharArray(toString(item(theAttributes,count-1)))';
+        str = char(toString(item(theAttributes,count-1)));
         k = strfind(str,'='); 
         attr_name = str(1:(k(1)-1));
         attr_name = strrep(attr_name, '-', '_dash_');
